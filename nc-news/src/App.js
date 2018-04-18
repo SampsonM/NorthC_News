@@ -12,9 +12,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Route path="/articles" component={Articles} />
+        <Route path="/articles/" component={Articles} />
         <Route path="/comments" component={Comments} />
-        <Route path="/topics" component={Topics} />
+        <Route path="/topics/" component={Topics} />
         <Route path="/users" component={Users} />
       </div>
     );
