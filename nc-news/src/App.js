@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Browser as Router, Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from './components/header';
 import Articles from './components/articles';
 import Comments from './components/comments';
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Route exact path="/" component={Articles} />
+        <Route path="/articles/:sort" component={Articles} />
         <Route path="/comments" component={Comments} />
         <Route path="/topics" component={Topics} />
         <Route path="/users" component={Users} />
