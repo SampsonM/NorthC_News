@@ -9,9 +9,8 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    const param = this.props.match.params.sort;
-    console.log(param)
-    this.getArticlesByParam(param);
+    this.setState({ loading: true });
+    this.getArticlesByParam();
   }
   
   render () {
@@ -23,10 +22,13 @@ class Articles extends Component {
         <div>
           {this.state.articles.map(article => {
             return (
-              <div class="card bg-light mb-3" style={{maxWidth: '100%'}}>
-                <div class="card-header">{article.title}</div>
-                <div class="card-body">
-                  <p class="card-text">{article.body}</p>
+              <div key={article._id} className="card bg-light mb-3" style={{maxWidth: '100%'}}>
+                <div className="card-header font-weight-bold border-danger">{article.title}</div>
+                <div className="card-body">
+                  <p className="card-text">{article.body}</p>
+                </div>
+                <div className="p-2 card-footer d-inline bg-transparent border-danger">
+                  <p className="mr-4 d-inline">votes: {article.votes}    </p><p className="mr-4 d-inline">comments: {article.comment_count}</p>
                 </div>
               </div>
             )
@@ -38,29 +40,21 @@ class Articles extends Component {
 
 
 
-  getArticlesByParam = (param) => {
-    this.setState({
-      loading : true
-     });
-  
+  getArticlesByParam = () => {
     return fetch('https://northc-news.herokuapp.com/api/articles')
-     .then(res => {
-        res.json();
-     })
       .then(res => {
-        const articleArr = res.data.slice(0);
-        return Promise.all([this.sortArticles(articleArr, param)]);
+        return res.json();
       })
-      .then(([res]) => {
-        this.setState({
+      .then(res => {
+        this.sortArticles(res);
+        return this.setState({
           articles : res,
           loading: false
         })
-        return res;
       })
   }
 
-  sortArticles = (articleArr, param) => {
+  sortArticles = (articleArr) => {
     return articleArr.sort((a, b) => {
       return b.votes - a.votes;
     })
