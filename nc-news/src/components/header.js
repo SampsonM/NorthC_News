@@ -13,9 +13,9 @@ class Header extends Component {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <Link class="nav-item nav-link" to="/">New<span class="sr-only"></span></Link>
-            <Link to="/" class="nav-item nav-link">Comments</Link>
-            <Link to="/" class="nav-item nav-link">Topics</Link>
-            <Link to="/" class="nav-item nav-link">Users</Link>
+            <Link to="/comments" class="nav-item nav-link">Comments</Link>
+            <Link to="/topics" class="nav-item nav-link">Topics</Link>
+            <Link to="/users" class="nav-item nav-link">Users</Link>
           </div>
         </div>
       </nav>

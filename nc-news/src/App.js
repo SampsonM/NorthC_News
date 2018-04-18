@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Browser as Route, Link } from "react-router-dom";
+import { Browser as Router, Route, Link } from "react-router-dom";
 import Header from './components/header';
 import Articles from './components/articles';
 import Comments from './components/comments';
@@ -14,8 +14,8 @@ class App extends Component {
         <Header />
         <Route exact path="/" component={Articles} />
         <Route path="/comments" component={Comments} />
-        <Route path="/Topics" component={Topics} />
-        <Route path="/Users" component={Users} />
+        <Route path="/topics" component={Topics} />
+        <Route path="/users" component={Users} />
       </div>
     );
   }
