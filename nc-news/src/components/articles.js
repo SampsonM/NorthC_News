@@ -12,19 +12,10 @@ class Articles extends Component {
   }
   
   render () {
-    const topicId = this.props.match.params.article_id;
     if (this.state.loading) {
       return <div>Loading...</div>
     }
-    
     if (!this.state.loading) {
-      if (topicId) {
-        return (
-          <div>
-            {this.filterArticlesById(topicId)}
-          </div>
-        )
-      }
       return (
         <div className="px-5">
           {this.createArticleDivs()}
@@ -47,13 +38,6 @@ class Articles extends Component {
         </div>
       )
     })
-  }
-
-  filterArticlesById = topicId => {
-    const articles = this.state.articles.filter(article => {
-      return topicId.includes(article.belongs_to)
-    })
-    this.createArticleDivs(articles)
   }
 
   getArticles = () => {
