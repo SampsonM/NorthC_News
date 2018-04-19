@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ArticleFooter from './ArticleFooter';
-import Comment from './comments'
+import Comments from './comments'
 
 class Article extends Component {
   state = {

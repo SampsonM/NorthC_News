@@ -5,10 +5,14 @@ class Comments extends Component {
     loading: true
   }
 
-  
-
   componentDidMount() {
-    this.getComments()
+    const id = this.props.id;
+    
+    // if (id.length > 0) {
+      this.getCommentsByArticle(this.props.id)
+    // } else {
+    //   this.getComments()
+    // }
   }
 
   render () {
@@ -17,6 +21,10 @@ class Comments extends Component {
 
   getComments = () => {
     fetch('')
+  }
+
+  getCommentsByArticle = () => {
+    return <div>article comment</div>
   }
 }
 
