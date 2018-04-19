@@ -10,7 +10,7 @@ class Topics extends Component {
   componentDidMount() {
     this.getTopics();
   }
-
+  
   render () {
     if (!this.state.loading) {
       return (
@@ -30,7 +30,6 @@ class Topics extends Component {
         <hr />
         <Route path="/topics/:topicId/articles" component={Topic} />
       </div>
-
       )
     } 
     if (this.state.loading) {
