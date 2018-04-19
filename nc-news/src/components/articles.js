@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import { Link } from 'react-router-dom';
 import ArticleFooter from './ArticleFooter';
 
 class Articles extends Component {
