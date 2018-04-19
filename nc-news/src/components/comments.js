@@ -22,9 +22,9 @@ class Comments extends Component {
         <div className="mt-3">
         {this.state.comments.map(({_id, belongs_to, created_by, votes, body, created_at}) => {
           return (
-            <div key={_id} className="card mt-1 mx-auto w-75">
-              <div className="card-header bg-danger text-white align-items-center justify-content-end">
-                <p className="d-inline font-weight-bold mr-5 mb-0">{belongs_to.title}</p>
+            <div key={_id} className="card p-1 mt-1 mx-auto w-75" style={{boxShadow: "0 2px 5px #ccc"}}>
+              <div className="card-header p-2 bg-danger text-white align-items-center justify-content-end">
+                <p className="d-inline">{belongs_to.title}</p>
                 <p className="d-inline float-right mb-0" style={{fontSize: "0.8rem"}}>Posted by {created_by.name}</p>
               </div>
               <div className="card-body">

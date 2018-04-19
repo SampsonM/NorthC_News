@@ -20,11 +20,11 @@ class Users extends Component {
             {this.state.users.map(({avatar_url, username, name, _id}) => {
               return (
                 <div key={_id} className="card bg-danger m-2" style={{width: "18rem"}}>
-                  <img className="card-img-top" src={avatar_url} alt="profile face"></img>
+                  <img className="card-img-top" style={{minHeight: "55%"}} src={avatar_url} alt="profile face"></img>
                   <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{username}</p>
-                    <a className="btn btn-primary">Profile</a>
+                    <a className="btn btn-light px-1 py-0">Profile</a>
                   </div>
                 </div>
               )

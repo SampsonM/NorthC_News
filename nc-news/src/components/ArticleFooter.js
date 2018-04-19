@@ -10,12 +10,12 @@ class ArticleFooter extends Component {
     const { comments, created } = this.props;
     return (
       <div className="p-1 card-footer d-inline border-danger align-items-center">
-        <button className="btn btn-light mr-2">
-          <i onClick={this.handleClick} className="fa fa-arrow-circle-up" ></i>
+        <button className="btn bg-danger mr-2">
+          <i onClick={this.handleClick} className="text-white fa fa-arrow-circle-up" ></i>
         </button>
-        <p className="mr-4 mt-1 d-inline">votes: {this.state.voteAmount} </p>
-        {this.checkForComments() && <p className="mr-1 mt-1 d-inline">comments: {comments}</p>}
-        {!this.checkForComments() && <p className="d-inline ml-2 mb-0">{moment(created).fromNow()}</p>}
+        <p className="mr-4 d-inline align-middle">votes {this.state.voteAmount} </p>
+        {this.checkForComments() && <p className="align-middle  d-inline">comments {comments}</p>}
+        {!this.checkForComments() && <p className="align-middle d-inline ml-2 mb-0">{moment(created).fromNow()}</p>}
       </div>
     )
   }

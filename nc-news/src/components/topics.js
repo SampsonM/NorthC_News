@@ -100,11 +100,20 @@ class Topic extends Component {
     return fetch(`https://northc-news.herokuapp.com/api/topics/${id}/articles`)
       .then(res => res.json())
       .then(res => {
+        return this.sortArticlesByVote(res)
+      })
+      .then(res => {
         this.setState({
           articles : res,
           loading : false
         })
       })
+  }
+
+  sortArticlesByVote = res => {
+    return res.sort((a, b) => {
+      return b.votes - a.votes
+    })
   }
 }
 
