@@ -9,13 +9,14 @@ class ArticleFooter extends Component {
   render () {
     const { comments, created, id } = this.props;
     return (
-      <div className="p-1 card-footer d-inline border-danger align-items-center">
-        <button className="btn bg-danger mr-2">
-          <i onClick={this.handleClick} className="text-white fa fa-arrow-circle-up" ></i>
+      <div className="p-1 card-footer d-inline border-danger">
+        <button onClick={this.handleClick} className="btn bg-danger mr-2">
+          <i className="text-white fa fa-arrow-circle-up" ></i>
         </button>
         <p className="mr-4 d-inline align-middle">votes {this.state.voteAmount} </p>
         {this.checkForComments() && <DropDownComments comments={comments} id={id} />}
-        {!this.checkForComments() && <p className="align-middle d-inline ml-2 mb-0">{moment(created).fromNow()}</p>}
+        {!this.checkForComments() && <p style={{fontSize : "0.8rem"}}
+          className="align-self-end d-inline">{moment(created).fromNow()}</p>}
       </div>
     )
   }
@@ -53,7 +54,7 @@ class DropDownComments extends Component {
     if (this.state.loading) {
       return (
         <div className="btn-group">
-          <button onClick={this.getCommentsByArticle} className="btn align-middle d-inline btn-danger dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          <button onClick={this.getCommentsByArticle} className="btn align-middle d-inline btn-outline-danger dropdown-toggle" aria-haspopup="true" aria-expanded="false">
             Comments {this.props.comments}
           </button>
         </div>
@@ -66,11 +67,6 @@ class DropDownComments extends Component {
             Comments {this.props.comments}
           </button>
           <div className="dropdown-menu">
-            {/* <a className="dropdown-item" >Action</a>
-            <a className="dropdown-item" >Another action</a>
-            <a className="dropdown-item" >Something else here</a>
-            <div className="dropdown-divider"></div>
-            <a className="dropdown-item" >Separated link</a> */}
             {this.state.comments.map(({created_at, created_by}) => {
               return (
                 <div className="dropdown-item">

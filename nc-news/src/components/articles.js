@@ -30,7 +30,7 @@ class Articles extends Component {
   createArticleDivs = () => {
     return this.state.articles.map(({body, title, _id, votes, comment_count}) => {
       return (
-        <div key={_id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%', boxShadow: "0 2px 5px #ccc"}}>
+        <div key={_id} className="card bg-light mt-2 mx-5" style={{maxWidth: '100%', boxShadow: "0 2px 5px #ccc"}}>
           <div className="card-header font-weight-bold border-danger">
             <Link className="text-danger" to={`/articles/${_id}`}>{title}</Link>
           </div>
