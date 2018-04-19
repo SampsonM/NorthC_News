@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Header extends Component {
   render () {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand font-weight-bold text-danger" to="/articles">NC-News</Link>
+        <NavLink className="navbar-brand font-weight-bold text-danger" to="/articles">NC-News</NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link to="/topics" className="nav-item nav-link">Topics</Link>
-            <Link to="/users" className="nav-item nav-link">Users</Link>
+            <NavLink to="/topics" className="nav-item nav-link">Topics</NavLink>
+            <NavLink to="/users" className="nav-item nav-link">Users</NavLink>
           </div>
         </div>
       </nav>

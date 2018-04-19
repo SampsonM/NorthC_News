@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
-import Comments from './comments';
+import { Route, Link } from 'react-router-dom';
+// import Vote from './vote';
 
 class Articles extends Component {
   state = {
@@ -23,7 +23,7 @@ class Articles extends Component {
             {this.createArticleDivs()}
           </div>
   
-          <Route path="http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up" component={} />
+          <Route path="/articles/:article_id?vote=up" component={Vote} />
         </div>
       )
     }
@@ -38,10 +38,8 @@ class Articles extends Component {
             <p className="card-text">{body}</p>
           </div>
           <div className="p-2 card-footer d-inline bg-transparent border-danger">
-            <Link to={`http://northcoders-news-api.herokuapp.com/api/articles/:${_id}?vote=up`}>
-              <i className="fas fa-arrow-alt-circle-up"></i>
-            </Link>
-            <p className="mr-4 d-inline">votes: {votes}    </p><p className="mr-4 d-inline">comments: {comment_count}</p>
+            <LinkBtn id={_id}/>
+            <p className="mr-4 mt-1 d-inline">votes: {votes} </p><p className="mr-4 mt-1 d-inline">comments: {comment_count} </p>
           </div>
         </div>
       )
@@ -70,7 +68,49 @@ class Articles extends Component {
       return b.votes - a.votes;
     })
   } 
+
+  IncrementVote = ({ match }) => {
+    
+    
+  }
 }
+
+const LinkBtn = ({id}) => {
+  return (
+    <button className="btn btn-light mr-2">
+      <Link to={`/articles/:${id}?vote=up`} id={id}><i className="fa fa-arrow-circle-up" ></i></Link>
+    </button>
+  )
+}
+
+class Vote extends Component {
+  state = {
+    loading: true
+  }
+
+  componentDidMount() {
+    const id = this.props.match.params.article_id;
+    this.IncrementVote(id)
+  }
+
+  render () {
+    if (!this.state.loading) {
+      return
+    }
+  }
+
+  incrementVote = id => {
+    console.log('vote')
+    console.log(this.props.match.params.article_id)
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/:${id}?vote=up`)
+      .then(res => res.json())
+      .then(console.log)
+      .then(() => {
+        this.setState({ loading: false })
+      })
+  }
+}
+
 
 
 export default Articles;

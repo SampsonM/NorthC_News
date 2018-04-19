@@ -72,6 +72,11 @@ class Topic extends Component {
   }
   
   render () {
+    if (this.state.loading) {
+      return (
+        <div>Loading...</div>
+      )
+    }
     if (!this.state.loading){
       return (
         <div>
@@ -89,11 +94,6 @@ class Topic extends Component {
               )
             })}
         </div>
-      )
-    }
-    if (this.state.loading) {
-      return (
-        <div>Loading...</div>
       )
     }
   }
