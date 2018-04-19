@@ -5,6 +5,8 @@ class Comments extends Component {
     loading: true
   }
 
+  
+
   componentDidMount() {
     this.getComments()
   }

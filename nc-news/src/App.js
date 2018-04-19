@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Route path="/articles/" component={Articles} />
-        <Route pathe="/articles/:article_id" component={Article} />
+        <Route exact path="/articles/" component={Articles} />
+        <Route path="/articles/:article_id" component={Article} />
         <Route path="/topics/" component={Topics} />
         <Route path="/users" component={Users} />
       </div>

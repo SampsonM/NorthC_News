@@ -20,8 +20,8 @@ class Topics extends Component {
             return (
               <div className="card mt-5" key={_id} style={{width: "18rem"}}>
                 <div className="card-body">
-                  <Link to={`/articles/${_id}`}><h5 className="card-title">Topic: {title}</h5></Link>
-                  <Link to={`/topics/${_id}/articles`} id={_id} className="card-link">Get articles</Link>
+                  <h5 className="card-title">Topic: {title}</h5>
+                  <Link to={`/topics/${_id}/articles`} id={_id} className="card-link text-danger">Get articles</Link>
                 </div>
               </div>
             )
@@ -83,7 +83,7 @@ class Topic extends Component {
             {this.state.articles.map(({_id, body, votes, comment_count, title}) => {
               return (
                 <div key={_id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%'}}>
-                  <div className="card-header font-weight-bold border-danger">{title}</div>
+                  <div className="card-header font-weight-bold border-danger"><Link className="text-danger" to={`/articles/${_id}`}>{title}</Link></div>
                   <div className="card-body">
                     <p className="card-text">{body}</p>
                   </div>

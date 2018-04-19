@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ArticleFooter from './ArticleFooter';
+import {Link} from 'react-router-dom';
 
 class Articles extends Component {
   state = {
@@ -10,8 +11,6 @@ class Articles extends Component {
     this.setState({ loading: true });
     this.getArticles();
   }
-
-
   
   render () {
     if (this.state.loading) {
@@ -27,12 +26,14 @@ class Articles extends Component {
       )
     }
   }
-
+ 
   createArticleDivs = () => {
     return this.state.articles.map(({body, title, _id, votes, comment_count}) => {
       return (
         <div key={_id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%'}}>
-          <div className="card-header font-weight-bold border-danger">{title}</div>
+          <div className="card-header font-weight-bold border-danger">
+            <Link className="text-danger" to={`/articles/${_id}`}>{title}</Link>
+          </div>
           <div className="card-body">
             <p className="card-text">{body}</p>
           </div>
