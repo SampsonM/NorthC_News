@@ -20,7 +20,7 @@ class Topics extends Component {
             return (
               <div className="card mt-5" key={_id} style={{width: "18rem"}}>
                 <div className="card-body">
-                  <h5 className="card-title">Topic: {title}</h5>
+                  <Link to={`/articles/${_id}`}><h5 className="card-title">Topic: {title}</h5></Link>
                   <Link to={`/topics/${_id}/articles`} id={_id} className="card-link">Get articles</Link>
                 </div>
               </div>

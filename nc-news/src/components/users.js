@@ -17,21 +17,19 @@ class Users extends Component {
         <div>
           <div className="card bg-danger"><br /></div>
           <div className="d-flex mt-4">
-            {this.state.users.map(user => {
+            {this.state.users.map(({avatar_url, username, name, _id}) => {
               return (
-                <div key={user._id} className="card bg-danger m-2" style={{width: "18rem"}}>
-                  <img className="card-img-top" src={user.avatar_url} alt="profile face"></img>
+                <div key={_id} className="card bg-danger m-2" style={{width: "18rem"}}>
+                  <img className="card-img-top" src={avatar_url} alt="profile face"></img>
                   <div className="card-body">
-                    <h5 className="card-title">{user.name}</h5>
-                    <p className="card-text">{user.username}</p>
+                    <h5 className="card-title">{name}</h5>
+                    <p className="card-text">{username}</p>
                     <a className="btn btn-primary">Profile</a>
                   </div>
                 </div>
               )
             })}
           </div>
-
-          
         </div>
       )
     }
@@ -48,27 +46,5 @@ class Users extends Component {
       })
   }
 }
-
-// const User = () => {
-
-//   if (this.state.loading) {
-//     return (<div>LOADING...</div>)
-//   }
-//   if (!this.state.loading) {
-//     return <div>ready!!</div>
-//   }
-
-//   // const user = 
-
-//   const fetchUserWithState = () => {
-//     const user = this.state.inputValue;
-//     console.log(user)
-//     if (!user) {
-//       return <div>no</div>
-//     } else {
-//       this.getUsers(user);
-//     }
-//   }
-// }
 
 export default Users;
