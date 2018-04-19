@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 // import Vote from './vote';
 
 class Articles extends Component {
@@ -11,6 +12,8 @@ class Articles extends Component {
     this.setState({ loading: true });
     this.getArticles();
   }
+
+
   
   render () {
     if (this.state.loading) {
@@ -22,28 +25,20 @@ class Articles extends Component {
           <div className="px-5">
             {this.createArticleDivs()}
           </div>
-  
-          {/* <Route path="/articles/:article_id?vote=up" component={Vote} /> */}
         </div>
       )
     }
   }
 
   createArticleDivs = () => {
-    return this.state.articles.map(({_id, body, votes, comment_count, title}) => {
+    return this.state.articles.map((article) => {
       return (
-        <div key={_id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%'}}>
-          <div className="card-header font-weight-bold border-danger">{title}</div>
+        <div key={article._id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%'}}>
+          <div className="card-header font-weight-bold border-danger">{article.title}</div>
           <div className="card-body">
-            <p className="card-text">{body}</p>
+            <p className="card-text">{article.body}</p>
           </div>
           <div className="p-2 card-footer d-inline bg-transparent border-danger">
-          <button className="btn btn-light mr-2">
-            <Link to={`/articles/:${_id}?vote=up`} id={_id} onClick={() => this.incrementVote(_id)}>
-              <i className="fa fa-arrow-circle-up" ></i>
-            </Link>
-          </button>
-            <p className="mr-4 mt-1 d-inline">votes: {votes} </p><p className="mr-4 mt-1 d-inline">comments: {comment_count} </p>
           </div>
         </div>
       )
@@ -73,23 +68,44 @@ class Articles extends Component {
     })
   } 
 
-  IncrementVote = (id) => {
-    // const id = this.props.match.params.article_id;
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/:${id}?vote=up`, {
-      method: 'PUT',
-      // body: JSON.stringify(data),
-      headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-      }
-      })
-      .then(res => res.json())
-      .then(console.log)
-      .then(() => {
-        this.setState({ loading: false })
-      })
+  incrementVote = id => {
+    axios.put(`https://northc-news.herokuapp.com/api/articles/${id}?vote=up`)
+      .then(r => {
+        console.log(r.data.votes)
+        // const stream = new ReadableStream({
+        //   start(controller) {
+        //     function push () {
+        //       r.body.getReader().read().then()(({done, value}) => {
+        //         if (done) {
+        //           controller.close();
+        //           return;
+        //         }
+        //         controller.enqueue(value);
+        //         push();
+        //       })
+        //     }
+        //     push();
+        //   }
+        // })
+        // return new Response(stream, {headers: { "Content-Type": "text/html" }})      })
+      // .then(res => res.json())
+    })
+      .catch(console.log)
+    
   }
 }
+
+// function footer () {
+//   return (
+//     <div>
+//       <button className="btn btn-light mr-2">
+//         <i onClick={() => this.incrementVote(article._id)} className="fa fa-arrow-circle-up" ></i>
+//       </button>
+//       <p className="mr-4 mt-1 d-inline">votes: {article.votes} </p>
+//       <p className="mr-4 mt-1 d-inline">comments: {article.comment_count}</p>
+//     </div>
+//   )
+// }
 
 // class Vote extends Component {
 //   state = {
