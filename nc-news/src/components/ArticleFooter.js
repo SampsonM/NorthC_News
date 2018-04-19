@@ -1,4 +1,5 @@
-import React from 'react-router-dom';
+import React, {Component} from 'react';
+import axios from 'axios';
 
 class ArticleFooter extends Component {
   state = {
@@ -26,7 +27,6 @@ class ArticleFooter extends Component {
         })
     })
       .catch(console.log)
-    
   }
 }
 

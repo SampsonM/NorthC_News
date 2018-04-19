@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 // import { Link } from 'react-router-dom';
-import axios from 'axios';
-import ArticleFooter from 'ArticleFooter';
+import ArticleFooter from './ArticleFooter';
 
 class Articles extends Component {
   state = {

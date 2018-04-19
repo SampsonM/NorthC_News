@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link } from 'react-router-dom';
+import ArticleFooter from './ArticleFooter';
 
 class Topics extends Component {
   state = {
@@ -87,9 +88,7 @@ class Topic extends Component {
                   <div className="card-body">
                     <p className="card-text">{body}</p>
                   </div>
-                  <div className="p-2 card-footer d-inline bg-transparent border-danger">
-                    <p className="mr-4 d-inline">votes: {votes}    </p><p className="mr-4 d-inline">comments: {comment_count}</p>
-                  </div>
+                  <ArticleFooter votes={votes} comments={comment_count} id={_id} />
                 </div>
               )
             })}
