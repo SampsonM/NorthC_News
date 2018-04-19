@@ -21,7 +21,10 @@ class Article extends Component {
       return (
         <div>
           <div className="card mx-5 mt-3">
-            <div className="card-header">{article.title}</div>
+            <div className="card-header bg-danger text-white d-flex">
+              <h5 className="mb-0">{article.title}</h5>
+              <p className="ml-5 mb-0" >N/ {article.belongs_to.title}</p>
+            </div>
             <div className="card-body">
               <p>{article.body}</p>
             </div>
@@ -29,7 +32,7 @@ class Article extends Component {
           </div>
           <Comments id={article._id} />
         </div>
-    )
+      )
     }
   }
 
