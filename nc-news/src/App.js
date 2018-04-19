@@ -5,7 +5,6 @@ import Articles from './components/articles';
 import Comments from './components/comments';
 import Topics from './components/topics';
 import Users from './components/users';
-import './components/css/App.css';
 
 class App extends Component {
   render() {
