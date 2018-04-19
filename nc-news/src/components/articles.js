@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import Vote from './vote';
 
 class Articles extends Component {
@@ -23,7 +23,7 @@ class Articles extends Component {
             {this.createArticleDivs()}
           </div>
   
-          <Route path="/articles/:article_id?vote=up" component={Vote} />
+          {/* <Route path="/articles/:article_id?vote=up" component={Vote} /> */}
         </div>
       )
     }
@@ -38,7 +38,11 @@ class Articles extends Component {
             <p className="card-text">{body}</p>
           </div>
           <div className="p-2 card-footer d-inline bg-transparent border-danger">
-            <LinkBtn id={_id}/>
+          <button className="btn btn-light mr-2">
+            <Link to={`/articles/:${_id}?vote=up`} id={_id} onClick={() => this.incrementVote(_id)}>
+              <i className="fa fa-arrow-circle-up" ></i>
+            </Link>
+          </button>
             <p className="mr-4 mt-1 d-inline">votes: {votes} </p><p className="mr-4 mt-1 d-inline">comments: {comment_count} </p>
           </div>
         </div>
@@ -69,40 +73,16 @@ class Articles extends Component {
     })
   } 
 
-  IncrementVote = ({ match }) => {
-    
-    
-  }
-}
-
-const LinkBtn = ({id}) => {
-  return (
-    <button className="btn btn-light mr-2">
-      <Link to={`/articles/:${id}?vote=up`} id={id}><i className="fa fa-arrow-circle-up" ></i></Link>
-    </button>
-  )
-}
-
-class Vote extends Component {
-  state = {
-    loading: true
-  }
-
-  componentDidMount() {
-    const id = this.props.match.params.article_id;
-    this.IncrementVote(id)
-  }
-
-  render () {
-    if (!this.state.loading) {
-      return
-    }
-  }
-
-  incrementVote = id => {
-    console.log('vote')
-    console.log(this.props.match.params.article_id)
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/:${id}?vote=up`)
+  IncrementVote = (id) => {
+    // const id = this.props.match.params.article_id;
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/:${id}?vote=up`, {
+      method: 'PUT',
+      // body: JSON.stringify(data),
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      }
+      })
       .then(res => res.json())
       .then(console.log)
       .then(() => {
@@ -110,6 +90,29 @@ class Vote extends Component {
       })
   }
 }
+
+// class Vote extends Component {
+//   state = {
+//     loading: true
+//   }
+
+//   componentDidMount() {
+//     
+//     this.IncrementVote(id)
+//   }
+
+//   render () {
+//     if (!this.state.loading) {
+//       return
+//     }
+//   }
+
+//   incrementVote = id => {
+//     console.log('vote')
+//     console.log(this.props.match.params.article_id)
+//     
+//   }
+// }
 
 
 
