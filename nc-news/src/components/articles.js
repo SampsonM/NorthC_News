@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import Comments from './comments';
 
 class Articles extends Component {
   state = {
@@ -16,8 +18,12 @@ class Articles extends Component {
     }
     if (!this.state.loading) {
       return (
-        <div className="px-5">
-          {this.createArticleDivs()}
+        <div>
+          <div className="px-5">
+            {this.createArticleDivs()}
+          </div>
+  
+          <Route path="http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up" component={} />
         </div>
       )
     }
@@ -32,6 +38,9 @@ class Articles extends Component {
             <p className="card-text">{body}</p>
           </div>
           <div className="p-2 card-footer d-inline bg-transparent border-danger">
+            <Link to={`http://northcoders-news-api.herokuapp.com/api/articles/:${_id}?vote=up`}>
+              <i className="fas fa-arrow-alt-circle-up"></i>
+            </Link>
             <p className="mr-4 d-inline">votes: {votes}    </p><p className="mr-4 d-inline">comments: {comment_count}</p>
           </div>
         </div>
@@ -50,6 +59,9 @@ class Articles extends Component {
           articles : res,
           loading: false
         })
+      })
+      .catch(err => {
+        console.log({err}, 'error')
       })
   }
 

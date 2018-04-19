@@ -11,7 +11,6 @@ class Header extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link to="/comments" className="nav-item nav-link">Comments</Link>
             <Link to="/topics" className="nav-item nav-link">Topics</Link>
             <Link to="/users" className="nav-item nav-link">Users</Link>
           </div>
