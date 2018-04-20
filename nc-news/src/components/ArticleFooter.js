@@ -6,6 +6,7 @@ class ArticleFooter extends Component {
   state = {
     voteAmount : this.props.votes
   }
+  
   render () {
     const { comments, created, id } = this.props;
     return (

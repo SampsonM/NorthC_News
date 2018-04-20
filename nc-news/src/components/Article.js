@@ -24,13 +24,16 @@ class Article extends Component {
         <div>
           <div className="card mx-5 mt-3">
             <Header title={article.title} belongs_to={article.belongs_to} />
-            <div className="card-body">
-              <p>{article.body}</p>
-            </div>
-            <ArticleFooter votes={article.votes} comments={article.comment_count} id={article._id}/>
+            <p className="card-body">{article.body}</p>
+            <ArticleFooter votes={article.votes} 
+              comments={article.comment_count} id={article._id}/>
           </div>
-          <CommentBox id={article._id} handleNewComment={this.handleNewcomment} />
-          <Comments id={article._id} loading={this.state.loading} comments={this.state.comments} />
+          <CommentBox id={article._id} user={this.props.user} 
+            handleNewComment={this.handleNewcomment} 
+          />
+          <Comments id={article._id} loading={this.state.loading} 
+            comments={this.state.comments} 
+          />
         </div>
       )
     }
@@ -85,7 +88,8 @@ class Header extends Component {
 
 class CommentBox extends Component {
   state= {
-    comment : ''
+    comment : '',
+    user : this.props.user
   }
 
   render () {
@@ -95,10 +99,16 @@ class CommentBox extends Component {
           id="inputGroup-sizing-lg">
           Comment!
         </button>
-        <input onChange={this.handleChange} type="text" className="w-75 form-control" aria-label="Large" 
-          aria-describedby="inputGroup-sizing-sm" style={{minHeight: "200px"}}/>
+        {!this.checkForUser() && <div></div>}
+        {this.checkForUser() && <input onChange={this.handleChange} type="text" 
+          className="w-75 form-control" aria-label="Large" 
+          aria-describedby="inputGroup-sizing-sm" style={{minHeight: "200px"}}/>}
       </div>
     )
+  }
+
+  checkForUser = () => {
+    return (this.state.user)
   }
 
   handleChange = event => {
