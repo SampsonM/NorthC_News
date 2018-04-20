@@ -3,13 +3,22 @@ import React, { Component } from 'react';
 class Welcome extends Component {
   render () {
     return (
-      <div class="jumbotron mx-5 mt-5 p-4 pl-5" style={{minHeight: "500px"}}>
-        <h1 class="display-4 my-4 text-danger">Hello, world!</h1>
-        <p class="lead">Welcome To NorthC-News, a simple wiki full of articles from current, past and present students, and lecturers!</p>
-        <hr class="my-4" /><br/>
-        <p>To see all the top articles follow the articles button, to see the latest topics click topics, and to browse the users click users!</p><br/>
-
+      <div className="jumbotron mx-5 mt-5 p-4 pl-5" style={{minHeight: "500px"}}>
+        <MainInfo />
         <InfoBtn />
+      </div>
+    )
+  }
+}
+
+class MainInfo extends Component {
+  render () {
+    return (
+      <div>
+        <h1 className="display-4 my-4 text-danger">Hello, world!</h1>
+        <p className="lead">Welcome To NorthC-News, a simple wiki full of articles from current, past and present students, and lecturers!</p>
+        <hr className="my-4" /><br/>
+        <p>To see all the top articles follow the articles button, to see the latest topics click topics, and to browse the users click users!</p><br/>
       </div>
     )
   }
@@ -19,11 +28,11 @@ class InfoBtn extends Component {
   render () {
     return (
       <div>
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+        <button type="button" className="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
           More Info...
         </button>
 
-        <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" 
+        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" 
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
