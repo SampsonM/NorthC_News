@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ArticleFooter, Loading, Comments } from './index';
+import { DivFooter, Loading, Comments } from './index';
 import axios from 'axios';
 
 class Article extends Component {
@@ -23,16 +23,18 @@ class Article extends Component {
       return (
         <div>
           <div className="card mx-5 mt-3">
-            <Header title={article.title} belongs_to={article.belongs_to} />
+            <Header title={article.title} name={article.created_by.name} belongs_to={article.belongs_to} />
             <p className="card-body">{article.body}</p>
-            <ArticleFooter votes={article.votes} 
+            <DivFooter votes={article.votes} 
               comments={article.comment_count} id={article._id}/>
           </div>
           <CommentBox id={article._id} user={this.props.user} 
             handleNewComment={this.handleNewcomment} 
           />
-          <Comments id={article._id} loading={this.state.loading} 
-            comments={this.state.comments} 
+          <Comments id={article._id} user={this.props.user} 
+            loading={this.state.loading} 
+            comments={this.state.comments}
+            deleteComment={this.deleteComment}
           />
         </div>
       )
@@ -61,6 +63,10 @@ class Article extends Component {
       })
   }
 
+  deleteComment = () => {
+
+  }
+
   sortComments = (comments) => {
     return comments.sort((a, b) => {
       return b.votes - a.votes
@@ -76,11 +82,15 @@ class Article extends Component {
 
 class Header extends Component {
   render() {
-    const { title, belongs_to } = this.props;
+    const { title, belongs_to, name } = this.props;
     return (
-      <div className="card-header bg-danger text-white d-flex">
+      <div className="card-header bg-danger text-white">
         <h5 className="mb-0">{title}</h5>
         <p className="align-self-end ml-4 mb-0 " style={{fontSize : "0.8rem"}}>N/ {belongs_to.title}</p>
+        <p className="float-right mb-0 font-weight-light d-inline"
+          style={{top: "10px",right:"10px", position: "absolute"}}>
+          Author {name}
+        </p>
       </div>
     )
   }

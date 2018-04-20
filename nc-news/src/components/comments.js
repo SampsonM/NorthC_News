@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Loading, ArticleFooter} from './index';
+import { Loading, DivFooter} from './index';
 
 class Comments extends Component {
   state = {
@@ -32,7 +32,9 @@ class Comments extends Component {
               <div className="card-body">
                 <p className="m-0">{body}</p>
               </div>
-              <ArticleFooter id={_id} votes={votes} created={created_at} />
+              <DivFooter commentUser={created_by.name} 
+                currentUser={this.props.user} id={_id} votes={votes} 
+                user={this.props.user} created={created_at} />
             </div>
           )
         })}

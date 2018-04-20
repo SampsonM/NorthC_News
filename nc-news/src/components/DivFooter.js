@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 const moment = require('moment');
 
-class ArticleFooter extends Component {
+class DivFooter extends Component {
   state = {
     voteAmount : this.props.votes
   }
@@ -26,8 +26,25 @@ class ArticleFooter extends Component {
           <p style={{fontSize : "0.8rem"}} 
           className="align-self-end d-inline">{moment(created).fromNow()}</p>
         }
+        {
+          this.checkForUser() &&
+          <button onClick={this.handleDeleteClick} 
+            className="align-self-middle d-inline float-right mb-0" >
+            <i class="fa fa-times-circle text-danger" />
+          </button>
+        }
       </div>
     )
+  }
+
+  checkForUser = () => {
+    const { currentUser } = this.props;
+    const { commentUser } = this.props;
+    if (currentUser === commentUser && currentUser !== undefined) return true;
+  }
+
+  handleDeleteClick = () => {
+    
   }
 
   handleClick = (event) => {
@@ -105,4 +122,4 @@ class DropDownComments extends Component {
   }
 }
 
-export default ArticleFooter;
+export default DivFooter;

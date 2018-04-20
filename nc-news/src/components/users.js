@@ -29,11 +29,11 @@ class Users extends Component {
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{username}</p>
                     <div>
-                      <button id={_id} onClick={this.handleClick} value="openProfile" 
+                      <button id={name} onClick={this.handleClick} value="openProfile" 
                         className="btn btn-light px-1 py-0">
                         Profile
                       </button>
-                      <button id={_id} onClick={this.handleClick} value="switchUser" 
+                      <button id={name} onClick={this.handleClick} value="switchUser" 
                         className="btn btn-light float-right px-1 py-0">
                         Switch User
                       </button>
@@ -50,6 +50,7 @@ class Users extends Component {
 
   handleClick = event => {
     const { value } = event.target;
+    console.log(event.target.id)
     if (value === 'switchUser') {
       this.props.handleNewUser(event.target.id)
     }

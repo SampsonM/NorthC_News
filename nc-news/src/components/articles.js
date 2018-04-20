@@ -29,7 +29,7 @@ class Articles extends Component {
   createArticleDivs = () => {
     return this.state.articles.map(article => {
       return (
-        <ArticleComponent key={article._id} article={article} />
+        <ArticleComponent key={article._id} article={article}/>
       )
     })
   }
