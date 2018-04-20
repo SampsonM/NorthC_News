@@ -15,20 +15,9 @@ class Topics extends Component {
     if (!this.state.loading) {
       return (
       <div>
-        <div className="d-flex justify-content-around">
-          {this.state.topics.map(({_id, title}) => {
-            return (
-              <div className="card mt-5" key={_id} style={{width: "18rem"}}>
-                <div className="card-body">
-                  <h5 className="card-title">Topic: {title}</h5>
-                  <Link to={`/topics/${_id}/articles`} id={_id} className="card-link text-danger">Get articles</Link>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        <TopicCards topics={this.state.topics} />
         <hr />
-        <Route path="/topics/:topicId/articles" component={Topic} />
+        <Route path="/topics/:topicId/articles" component={TopicArticles} />
       </div>
       )
     } 
@@ -56,7 +45,31 @@ class Topics extends Component {
   }
 }
 
-class Topic extends Component {
+
+//** TOPIC CARD COMPONENT */
+class TopicCards extends Component {
+  render () {
+    const { topics } = this.props;
+    return(
+      <div className="d-flex justify-content-around">
+          {topics.map(({_id, title}) => {
+            return (
+              <div className="card mt-5" key={_id} style={{width: "18rem"}}>
+                <div className="card-body">
+                  <h5 className="card-title">Topic: {title}</h5>
+                  <Link to={`/topics/${_id}/articles`} id={_id} className="card-link text-danger">Get articles</Link>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+    )
+  }
+}
+
+
+//** TOPICS ARTICLES */
+class TopicArticles extends Component {
   state = {
     loading : true,
   }
