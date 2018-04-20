@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ArticleFooter from './ArticleFooter';
+import {ArticleFooter, Loading} from './index';
 import {Link} from 'react-router-dom';
 
 class Articles extends Component {
@@ -14,7 +14,7 @@ class Articles extends Component {
   
   render () {
     if (this.state.loading) {
-      return <div>Loading...</div>
+      return <Loading />
     }
     if (!this.state.loading) {
       return (

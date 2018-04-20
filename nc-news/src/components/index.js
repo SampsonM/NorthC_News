@@ -1,15 +1,21 @@
-import Header from './header';
-import Welcome from './Welcome';
-import Articles from './articles';
 import Article from './Article';
+import ArticleFooter from './ArticleFooter';
+import Articles from './articles';
+import Comments from './comments';
+import Header from './header';
+import Loading from './Loading';
 import Topics from './topics';
 import Users from './users';
+import Welcome from './Welcome';
 
 export {
-  Header,
-  Welcome,
-  Articles,
   Article,
+  ArticleFooter,
+  Articles,
+  Comments,
+  Header,
+  Loading,
   Topics,
-  Users
+  Users,
+  Welcome
 };

@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import ArticleFooter from './ArticleFooter';
-import Comments from './comments'
+import React, { Component } from 'react';
+import { ArticleFooter, Loading, Comments } from './index';
 
 class Article extends Component {
   state = {
@@ -14,7 +13,7 @@ class Article extends Component {
 
   render () {
     if (this.state.loading) {
-      return <div>LOADING...</div>
+      return <Loading />
     }
     if (!this.state.loading) {
       const article = this.state.article[0];

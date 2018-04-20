@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ArticleFooter from './ArticleFooter';
+import { Loading, ArticleFooter} from './index';
 
 class Comments extends Component {
   state = {
@@ -14,7 +14,7 @@ class Comments extends Component {
 
   render () {
     if (this.state.loading) {
-      return <div>LOADING...</div>
+      return <Loading />
     }
     if (!this.state.loading) {
       console.log(this.state.comments)

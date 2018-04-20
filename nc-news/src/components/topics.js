@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link } from 'react-router-dom';
-import ArticleFooter from './ArticleFooter';
+import{ ArticleFooter, Loading } from './index';
 
 class Topics extends Component {
   state = {
@@ -22,7 +22,7 @@ class Topics extends Component {
       )
     } 
     if (this.state.loading) {
-      return <div>loading...</div>
+      return <Loading />
     }
   }
 

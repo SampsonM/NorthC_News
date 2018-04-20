@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Loading} from './index';
 
 class Users extends Component {
   state = {
@@ -11,7 +12,7 @@ class Users extends Component {
   }
 
   render () {
-    if (this.state.loading) return <div>LOADING...</div>
+    if (this.state.loading) return <Loading />
     if (!this.state.loading) {
       return (
         <div>
