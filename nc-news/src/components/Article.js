@@ -28,7 +28,8 @@ class Article extends Component {
             <DivFooter votes={article.votes} 
               comments={this.state.comments.length} id={article._id}/>
           </div>
-          <CommentBox id={article._id} user={this.props.user} 
+          <CommentBox belongs_to={article._id} 
+            created_by={this.props.userId} 
             handleNewComment={this.handleNewcomment} 
           />
           <Comments id={article._id} user={this.props.user} 
@@ -86,9 +87,8 @@ class Article extends Component {
   }
 
   handleNewcomment = comment => {
-    this.setState({
-      comments : [...this.state.comments, comment.data]
-    })
+    const articleId = this.props.match.params.article_id;
+    this.getCommentsByArticle(articleId);
   }
 }
 
@@ -108,10 +108,13 @@ class Header extends Component {
   }
 }
 
+//** COMMENT BOX */
 class CommentBox extends Component {
-  state= {
+  state = {
     comment : '',
-    user : this.props.user
+    created_by : this.props.created_by,
+    belongs_to : this.props.belongs_to,
+    value : "enter text.."
   }
 
   render () {
@@ -130,7 +133,7 @@ class CommentBox extends Component {
         {this.checkForUser() && 
 
           <div className="w-75 card ml-5">
-            <input onChange={this.handleChange} type="text" 
+            <input onChange={this.handleChange} placeholder="enter text.." type="text" 
               className="card-body form-control" aria-label="Large" 
               aria-describedby="inputGroup-sizing-sm" style={{minHeight: "200px"}}/>
           </div>}
@@ -139,7 +142,7 @@ class CommentBox extends Component {
   }
 
   checkForUser = () => {
-    return (this.state.user)
+    return (this.state.created_by)
   }
 
   handleChange = event => {
@@ -150,13 +153,13 @@ class CommentBox extends Component {
   }
 
   handleClick = event => {
-    const { id } = this.props;
+    const { belongs_to } = this.state;
     const { comment } = this.state;
-    const { user } = this.state;
-    axios.post(`https://northc-news.herokuapp.com/api/articles/${id}/comments`, {
+    const { created_by } = this.state;
+    axios.post(`https://northc-news.herokuapp.com/api/articles/${belongs_to}/comments`, {
       comment : comment,
-      created_by : user,
-      belongs_to : id
+      created_by : created_by,
+      belongs_to : belongs_to
       })
       .then(res => {
         this.props.handleNewComment(res)

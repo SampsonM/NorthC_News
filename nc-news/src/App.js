@@ -6,7 +6,8 @@ import {
 
 class App extends Component {
   state = {
-    user : ''
+    user : '',
+    userId: ''
   }
 
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route exact path="/articles/" component={Articles} />
         <Route path="/articles/:article_id"
           render={(props) => (<Article {...props} 
+          userId={this.state.userId}
           user={this.state.user}/>)}
         />
         <Route path="/topics" component={Topics} />
@@ -29,9 +31,10 @@ class App extends Component {
     );
   }
 
-  handleNewUser = user => {
+  handleNewUser = (user, userId) => {
     this.setState({
-      user: user
+      user: user,
+      userId : userId
     })
   }
 }

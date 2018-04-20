@@ -33,7 +33,7 @@ class Users extends Component {
                         className="btn btn-light px-1 py-0">
                         Profile
                       </button>
-                      <button id={name} onClick={this.handleClick} value="switchUser" 
+                      <button name={name} id={_id} onClick={this.handleClick} value="switchUser" 
                         className="btn btn-light float-right px-1 py-0">
                         Switch User
                       </button>
@@ -51,7 +51,7 @@ class Users extends Component {
   handleClick = event => {
     const { value } = event.target;
     if (value === 'switchUser') {
-      this.props.handleNewUser(event.target.id)
+      this.props.handleNewUser(event.target.name, event.target.id)
     }
   }
 
