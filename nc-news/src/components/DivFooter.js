@@ -30,7 +30,7 @@ class DivFooter extends Component {
           this.checkForUser() &&
           <button onClick={this.handleDeleteClick} 
             className="align-self-middle d-inline float-right mb-0" >
-            <i class="fa fa-times-circle text-danger" />
+            <i className="fa fa-times-circle text-danger" />
           </button>
         }
       </div>
@@ -44,7 +44,7 @@ class DivFooter extends Component {
   }
 
   handleDeleteClick = () => {
-    
+    this.props.deleteComment(this.props.id)
   }
 
   handleClick = (event) => {

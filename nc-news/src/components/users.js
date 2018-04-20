@@ -50,7 +50,6 @@ class Users extends Component {
 
   handleClick = event => {
     const { value } = event.target;
-    console.log(event.target.id)
     if (value === 'switchUser') {
       this.props.handleNewUser(event.target.id)
     }

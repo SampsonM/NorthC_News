@@ -26,7 +26,7 @@ class Article extends Component {
             <Header title={article.title} name={article.created_by.name} belongs_to={article.belongs_to} />
             <p className="card-body">{article.body}</p>
             <DivFooter votes={article.votes} 
-              comments={article.comment_count} id={article._id}/>
+              comments={this.state.comments.length} id={article._id}/>
           </div>
           <CommentBox id={article._id} user={this.props.user} 
             handleNewComment={this.handleNewcomment} 
@@ -63,9 +63,21 @@ class Article extends Component {
       })
   }
 
-  deleteComment = () => {
-
-  }
+  deleteComment = id => {
+    axios.delete(`https://northc-news.herokuapp.com/api/comments/${id}`)
+      .then(res => {
+        return res.data.filter(comment => {
+          if (comment.belongs_to === this.state.article[0]._id) {
+            return comment;
+          }
+        })
+      })
+      .then(res => {
+        this.setState({
+          comments : res
+        })
+      })
+    }
 
   sortComments = (comments) => {
     return comments.sort((a, b) => {

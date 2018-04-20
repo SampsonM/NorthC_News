@@ -33,7 +33,9 @@ class Comments extends Component {
                 <p className="m-0">{body}</p>
               </div>
               <DivFooter commentUser={created_by.name} 
-                currentUser={this.props.user} id={_id} votes={votes} 
+                currentUser={this.props.user} id={_id} 
+                votes={votes}
+                deleteComment={this.props.deleteComment}
                 user={this.props.user} created={created_at} />
             </div>
           )
