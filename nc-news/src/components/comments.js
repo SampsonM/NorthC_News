@@ -17,7 +17,6 @@ class Comments extends Component {
       return <Loading />
     }
     if (!this.state.loading) {
-      console.log(this.state.comments)
       return (
         <div className="mt-3">
         {this.state.comments.map(({_id, belongs_to, created_by, votes, body, created_at}) => {

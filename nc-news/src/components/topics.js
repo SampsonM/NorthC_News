@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link } from 'react-router-dom';
-import{ ArticleFooter, Loading } from './index';
+import{ Loading, ArticleComponent } from './index';
 
 class Topics extends Component {
   state = {
@@ -93,15 +93,9 @@ class TopicArticles extends Component {
     if (!this.state.loading){
       return (
         <div>
-            {this.state.articles.map(({_id, body, votes, comment_count, title}) => {
+            {this.state.articles.map(article => {
               return (
-                <div key={_id} className="card bg-light mb-2 mx-5" style={{maxWidth: '100%'}}>
-                  <div className="card-header font-weight-bold border-danger"><Link className="text-danger" to={`/articles/${_id}`}>{title}</Link></div>
-                  <div className="card-body">
-                    <p className="card-text">{body}</p>
-                  </div>
-                  <ArticleFooter votes={votes} comments={comment_count} id={_id} />
-                </div>
+                <ArticleComponent key={article._id} article={article} />
               )
             })}
         </div>

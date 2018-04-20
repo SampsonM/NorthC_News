@@ -13,10 +13,18 @@ class ArticleFooter extends Component {
         <button onClick={this.handleClick} className="btn bg-danger mr-2">
           <i className="text-white fa fa-arrow-circle-up" ></i>
         </button>
-        <p className="mr-4 d-inline align-middle">votes {this.state.voteAmount} </p>
-        {this.checkForComments() && <DropDownComments comments={comments} id={id} />}
-        {!this.checkForComments() && <p style={{fontSize : "0.8rem"}}
-          className="align-self-end d-inline">{moment(created).fromNow()}</p>}
+        <p className="mr-4 d-inline align-middle">
+          votes {this.state.voteAmount} 
+        </p>
+        {
+          this.checkForComments() && 
+          <DropDownComments comments={comments} id={id} />
+        }
+        {
+          !this.checkForComments() && 
+          <p style={{fontSize : "0.8rem"}} 
+          className="align-self-end d-inline">{moment(created).fromNow()}</p>
+        }
       </div>
     )
   }
