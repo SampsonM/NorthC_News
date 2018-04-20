@@ -6,7 +6,7 @@ class ArticleFooter extends Component {
   state = {
     voteAmount : this.props.votes
   }
-  
+
   render () {
     const { comments, created, id } = this.props;
     return (
@@ -78,9 +78,9 @@ class DropDownComments extends Component {
             Comments {this.props.comments}
           </button>
           <div className="dropdown-menu">
-            {this.state.comments.map(({created_at, created_by}) => {
+            {this.state.comments.map(({_id, created_at, created_by}) => {
               return (
-                <div className="dropdown-item">
+                <div key={_id} className="dropdown-item">
                   <p className="d-inline">{created_by.name}</p>
                   <p className="d-inline ml-1" style={{fontSize : "0.8rem"}}>{moment(created_at).fromNow()}</p>
                 </div>

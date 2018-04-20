@@ -6,7 +6,8 @@ import {
 
 class App extends Component {
   state = {
-    user : ''
+    user : '',
+    username : ''
   }
 
   render() {
@@ -16,11 +17,14 @@ class App extends Component {
         <Route exact path="/" component={Welcome} />
         <Route exact path="/articles/" component={Articles} />
         <Route path="/articles/:article_id"
-          render={(props) => (<Article {...props} user={this.state.user} />)}
+          render={(props) => (<Article {...props} 
+          user={this.state.user} 
+          userName={this.state.username}/>)}
         />
         <Route path="/topics" component={Topics} />
         <Route path="/users"
-          render={(props) => (<Users {...props} 
+          render={(props) => (<Users {...props}
+          handleNewUser={this.handleNewUser} 
           user={this.state.user} />)}
         />
       </div>

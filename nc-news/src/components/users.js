@@ -19,7 +19,7 @@ class Users extends Component {
         <div>
           <div className="card bg-danger"><br /></div>
           <div className="d-flex flex-wrap mt-4">
-            {this.state.users.map(({avatar_url, username, name, _id}) => {
+            {this.state.users.map(({avatar_url, username, name, _id}, i) => {
               return (
                 <div key={_id} className="card bg-danger mx-auto my-2" 
                   style={{width: "18rem", height: "100%"}}>
@@ -29,11 +29,11 @@ class Users extends Component {
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{username}</p>
                     <div>
-                      <button onClick={this.handleClick} value="openProfile" 
+                      <button id={_id} onClick={this.handleClick} value="openProfile" 
                         className="btn btn-light px-1 py-0">
                         Profile
                       </button>
-                      <button onClick={this.handleClick} value="switchUser" 
+                      <button id={_id} onClick={this.handleClick} value="switchUser" 
                         className="btn btn-light float-right px-1 py-0">
                         Switch User
                       </button>
@@ -51,7 +51,7 @@ class Users extends Component {
   handleClick = event => {
     const { value } = event.target;
     if (value === 'switchUser') {
-      console.log(this.props)
+      this.props.handleNewUser(event.target.id)
     }
   }
 

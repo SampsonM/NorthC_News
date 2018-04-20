@@ -95,14 +95,23 @@ class CommentBox extends Component {
   render () {
     return (
       <div className="input-group input-group-lg mx-auto mb-0 mt-3 d-flex align-content-end" style={{maxWidth: "70%"}}> 
-        <button onClick={this.handleClick} className="btn btn-outline-danger " style={{maxHeight: "50px"}}        
+        <button onClick={this.handleClick} 
+          className="btn btn-outline-danger ml-2 mr-4" 
+          style={{maxHeight: "50px"}}        
           id="inputGroup-sizing-lg">
           Comment!
         </button>
-        {!this.checkForUser() && <div></div>}
-        {this.checkForUser() && <input onChange={this.handleChange} type="text" 
-          className="w-75 form-control" aria-label="Large" 
-          aria-describedby="inputGroup-sizing-sm" style={{minHeight: "200px"}}/>}
+        {!this.checkForUser() && 
+          <div className="w-75 card ml-5">
+            <p className="card-body">Please switch to a user to add comments</p>
+          </div>}
+        {this.checkForUser() && 
+
+          <div className="w-75 card ml-5">
+            <input onChange={this.handleChange} type="text" 
+              className="card-body form-control" aria-label="Large" 
+              aria-describedby="inputGroup-sizing-sm" style={{minHeight: "200px"}}/>
+          </div>}
       </div>
     )
   }
