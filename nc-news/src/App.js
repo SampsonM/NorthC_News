@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import {
-  Header, Welcome, Articles, Article, Topics, Users 
+  Header, Welcome, Articles, Article, Topics, Users, Profile
 } from './components';
 
 class App extends Component {
@@ -22,11 +22,13 @@ class App extends Component {
           user={this.state.user}/>)}
         />
         <Route path="/topics" component={Topics} />
+        <Route exact path="/profile/:username" component={Profile} />
         <Route path="/users"
           render={(props) => (<Users {...props}
           handleNewUser={this.handleNewUser} 
           user={this.state.user} />)}
         />
+       
       </div>
     );
   }

@@ -5,6 +5,7 @@ import Comments from './comments';
 import DivFooter from './DivFooter';
 import Header from './header';
 import Loading from './Loading';
+import Profile from './Profile';
 import Topics from './topics';
 import Users from './users';
 import Welcome from './Welcome';
@@ -17,6 +18,7 @@ export {
   DivFooter,
   Header,
   Loading,
+  Profile,
   Topics,
   Users,
   Welcome
