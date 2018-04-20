@@ -3,20 +3,23 @@ import { Loading, ArticleFooter} from './index';
 
 class Comments extends Component {
   state = {
-    loading: true
+    loading: true,
+    comments : this.props.comments
   }
 
-  componentDidMount() {
-    const id = this.props.id;
-
-    this.getCommentsByArticle(id)
+  componentWillReceiveProps (nextProps) {
+    const { comments } = nextProps;
+    this.setState({
+      comments: comments
+    })
   }
 
   render () {
-    if (this.state.loading) {
+    const { loading } = this.props;
+    if (loading) {
       return <Loading />
     }
-    if (!this.state.loading) {
+    if (!loading) {
       return (
         <div className="mt-3">
         {this.state.comments.map(({_id, belongs_to, created_by, votes, body, created_at}) => {
@@ -33,28 +36,11 @@ class Comments extends Component {
             </div>
           )
         })}
-      </div>
-    )
+        </div>
+      )
     }
   }
 
-  getCommentsByArticle = id => {
-    fetch(`https://northc-news.herokuapp.com/api/articles/${id}/comments`)
-      .then(res => res.json())
-      .then(res => this.sortComments(res))
-      .then(res => {
-        this.setState({
-          comments: res,
-          loading: false
-        })
-      })
-  }
-
-  sortComments = (comments) => {
-    return comments.sort((a, b) => {
-      return b.votes - a.votes
-    })
-  }
 }
 
 export default Comments;

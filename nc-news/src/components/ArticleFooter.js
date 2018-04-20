@@ -30,10 +30,10 @@ class ArticleFooter extends Component {
   }
 
   handleClick = (event) => {
-    if (!this.checkForComments()) {
-      this.incrementVotes('comments')
-    } else {
+    if (this.checkForComments()) {
       this.incrementVotes('articles')
+    } else {
+      this.incrementVotes('comments')
     }
   }
 
@@ -62,7 +62,9 @@ class DropDownComments extends Component {
     if (this.state.loading) {
       return (
         <div className="btn-group">
-          <button onClick={this.getCommentsByArticle} className="btn align-middle d-inline btn-outline-danger dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          <button onClick={this.getCommentsByArticle} 
+            className="btn align-middle d-inline btn-outline-danger dropdown-toggle" 
+            aria-haspopup="true" aria-expanded="false">
             Comments {this.props.comments}
           </button>
         </div>

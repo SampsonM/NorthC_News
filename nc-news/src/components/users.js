@@ -17,11 +17,11 @@ class Users extends Component {
       return (
         <div>
           <div className="card bg-danger"><br /></div>
-          <div className="d-flex mt-4">
+          <div className="d-flex flex-wrap mt-4">
             {this.state.users.map(({avatar_url, username, name, _id}) => {
               return (
-                <div key={_id} className="card bg-danger m-2" style={{width: "18rem"}}>
-                  <img className="card-img-top" style={{minHeight: "55%"}} src={avatar_url} alt="profile face"></img>
+                <div key={_id} className="card bg-danger mx-auto my-2" style={{width: "18rem", height: "100%"}}>
+                  <img className="card-img-top" style={{minHeight: "286px"}} src={avatar_url} alt="profile face"></img>
                   <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{username}</p>
