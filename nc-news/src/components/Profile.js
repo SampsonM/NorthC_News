@@ -66,11 +66,7 @@ class Profile extends Component {
       .then(res => res.json())
       .then(res => {
         const userid = this.state.user._id;
-        return res.filter(article => {
-          if (article.created_by._id === userid) {
-            return article;
-          }
-        })
+        return res.filter(article => article.created_by._id === userid)
       })
       .then(res => {
         this.setState({

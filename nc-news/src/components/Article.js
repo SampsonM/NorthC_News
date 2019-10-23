@@ -67,11 +67,7 @@ class Article extends Component {
   deleteComment = id => {
     axios.delete(`https://northc-news.herokuapp.com/api/comments/${id}`)
       .then(res => {
-        return res.data.filter(comment => {
-          if (comment.belongs_to._id === this.state.article[0]._id) {
-            return comment;
-          }
-        })
+        return res.data.filter(comment => comment.belongs_to._id === this.state.article[0]._id)
       })
       .then(res => {
         console.log(res)
